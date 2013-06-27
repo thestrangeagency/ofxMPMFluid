@@ -49,7 +49,6 @@
 
 #include "ofxMPMFluid.h"
 #include "ofxAutoControlPanel.h"  /* for the control panel */
-#include "ofxVectorGraphics.h"    /* for PostScript output */
 
 class testApp : public ofBaseApp {
 	
@@ -81,7 +80,7 @@ class testApp : public ofBaseApp {
 
 	//-----------------------------------
 	// For PostScript output, if you like that sorta thing
-	ofxVectorGraphics epsOutput;
+//	ofxVectorGraphics epsOutput;
 	void outputPostscript();
 	bool bEpsCapture;
 };

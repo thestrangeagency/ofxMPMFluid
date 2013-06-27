@@ -110,10 +110,10 @@ void testApp::outputPostscript(){
 	// Each particle is rendered as a small circle. 
 	
 	if(bEpsCapture){
-		epsOutput.beginEPS("fluid-output.ps");
-		epsOutput.fill();
-		epsOutput.setColor(0x000000); 
-		epsOutput.setLineWidth(0.04); //mm!
+//		epsOutput.beginEPS("fluid-output.ps");
+//		epsOutput.fill();
+//		epsOutput.setColor(0x000000); 
+//		epsOutput.setLineWidth(0.04); //mm!
 		
 		int printAreaInMillimeters = 11.0 * 2.54 * 10.0;
 		float pageScale = printAreaInMillimeters / (fluid.getGridSizeX()-5);
@@ -125,12 +125,12 @@ void testApp::outputPostscript(){
 			float y0 = p->y;
 			
 			if ((x0>0) && (x0<fluid.getGridSizeX()) && (y0>0) && (y0<fluid.getGridSizeY())){
-				epsOutput.circle (pageScale*x0, pageScale*y0, 0.1);
+//				epsOutput.circle (pageScale*x0, pageScale*y0, 0.1);
 			}
 			
 		}
 		
-		epsOutput.endEPS();
+//		epsOutput.endEPS();
 		bEpsCapture = false;
 		
 	}

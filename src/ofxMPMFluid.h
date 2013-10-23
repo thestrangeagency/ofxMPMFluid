@@ -53,9 +53,16 @@ class ofxMPMFluid {
   public:
 	ofxMPMFluid();
 
-	void setup(int maxParticles);
+	void setup(int maxParticles, int w=160, int h=120);
 	void update();
 	void draw();
+    
+    int gridSizeX, gridSizeY;
+    ofVec2f translate;
+    
+    
+    void addObstacle(ofxMPMObstacle *ob);
+    void removeObstacle(ofxMPMObstacle *ob);
 	
 	int getGridSizeX();
 	int getGridSizeY();
@@ -71,7 +78,10 @@ class ofxMPMFluid {
 	bool  bGradient;	
 	float gravity;
 	bool  bDoObstacles;
-	float smoothing;	
+	float smoothing;
+    
+    bool bDoMouse;
+    float mouseForce;
 	
 	vector<ofxMPMParticle*>& getParticles();
 	

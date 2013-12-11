@@ -54,7 +54,7 @@ class ofxMPMFluid {
 	ofxMPMFluid();
 
 	void setup(int maxParticles, int w=160, int h=120);
-	void update();
+	void update(float mouseX = ofGetMouseX(), float mouseY = ofGetMouseY());
 	void draw();
     
     int gridSizeX, gridSizeY;
@@ -95,5 +95,6 @@ class ofxMPMFluid {
 	int numActiveNodes;
 	
 	vector<ofxMPMObstacle*> obstacles;
-	
+	float previousMouseX;
+	float previousMouseY;
 };

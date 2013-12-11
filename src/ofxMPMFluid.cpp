@@ -95,7 +95,7 @@ void ofxMPMFluid::setup(int maxParticles, int w, int h){
 	}
 }
 
-void ofxMPMFluid::update(){
+void ofxMPMFluid::update(float mouseX, float mouseY){
 	// Important: can't exceed maxNParticles!
 	numParticles = MIN(numParticles, maxNumParticles);
 	
@@ -454,10 +454,10 @@ void ofxMPMFluid::update(){
 		
 		p->v += gravity;
 		if (bDoMouse) {
-			float vx = abs(p->x - ofGetMouseX()/scaleFactor);
-			float vy = abs(p->y - ofGetMouseY()/scaleFactor);
-			float mdx = (ofGetMouseX() - ofGetPreviousMouseX())/scaleFactor/2;
-			float mdy = (ofGetMouseY() - ofGetPreviousMouseY())/scaleFactor/2;
+			float vx = abs(p->x - mouseX/scaleFactor);
+			float vy = abs(p->y - mouseY/scaleFactor);
+			float mdx = (mouseX - previousMouseX)/scaleFactor/2;
+			float mdy = (mouseY - previousMouseY)/scaleFactor/2;
 			if (vx < mouseForce && vy < mouseForce) {
 				float weight = (1.0F - vx / mouseForce) * (1.0F - vy / mouseForce);
 				p->u += weight * (mdx - p->u);
@@ -547,8 +547,10 @@ void ofxMPMFluid::update(){
 	long dt =  t4 - t0;
 	elapsed = 0.95*elapsed + 0.05*(dt);
 	// Timing: in case you're curious about CPU consumption, uncomment this:
-	// printf("Elapsed = %d	%d	%d	%d	%f\n", dt0, dt1, dt2, dt3, elapsed); 
+	// printf("Elapsed = %d	%d	%d	%d	%f\n", dt0, dt1, dt2, dt3, elapsed);
 	
+	previousMouseX = mouseX;
+	previousMouseY = mouseY;
 }
 
 void ofxMPMFluid::draw(){

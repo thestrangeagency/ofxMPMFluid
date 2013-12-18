@@ -83,14 +83,14 @@ void ofxMPMFluid::setup(int maxParticles, int w, int h){
 	}
 	
 	for (int i=0; i<(gridSizeX * gridSizeY); i++){
-		activeNodes.push_back( new ofxMPMNode() );
+		activeNodes.push_back(new ofxMPMNode() );
 	}
 	
 	for (int i=0; i < maxParticles; i++) {
 		int x0 = 5;
 		int x1 = gridSizeX-5;
 		float rx = ofRandom(x0,x1); 
-		float ry = ofRandom(5,gridSizeY/5);
+		float ry = ofRandom(5,gridSizeY-5);
 		particles.push_back( new ofxMPMParticle(rx,ry, 0.0, 0.0) );
 	}
 }
@@ -106,9 +106,9 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
 			grid[i][j]->clear();
 		}
 	}
-	
-	numActiveNodes = 0; 
-		
+
+	numActiveNodes = 0;
+
 	long t0 = ofGetElapsedTimeMillis();
 	//-------------------------
 	// Particles pass 1

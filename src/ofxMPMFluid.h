@@ -56,6 +56,10 @@ class ofxMPMFluid {
 	void setup(int maxParticles, int w=160, int h=120);
 	void update(float mouseX = ofGetMouseX(), float mouseY = ofGetMouseY());
 	void draw();
+    void addTouch(int userID, ofVec2f pos);
+    void addTouch(ofVec2f pos);
+    void updateTouch(int userID, ofVec2f pos);
+    void removeTouch(int userID);
     
     int gridSizeX, gridSizeY;
     ofVec2f translate;
@@ -88,6 +92,7 @@ class ofxMPMFluid {
   protected:
 	float elapsed;
 
+    map<int , vector<ofVec2f> > userPos;
 	vector<ofxMPMParticle*> particles;
 	int maxNumParticles;
 	vector< vector<ofxMPMNode*> > grid;

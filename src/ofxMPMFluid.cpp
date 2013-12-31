@@ -454,6 +454,7 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
 		
 		p->v += gravity;
 		if (bDoMouse) {
+            
 			float vx = abs(p->x - mouseX/scaleFactor);
 			float vy = abs(p->y - mouseY/scaleFactor);
 			float mdx = (mouseX - previousMouseX)/scaleFactor/2;
@@ -465,6 +466,27 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
 			}
 		}
 		
+        if(userPos.size() > 0){
+            map<int, vector<ofVec2f > >::iterator it;
+            
+            for(it = userPos.begin(); it != userPos.end(); it++){
+                
+                for( int i =0; i<it->second.size()-1; i++){
+                    
+                    float vx = abs(p->x - it->second[i +1].x/scaleFactor);
+                    float vy = abs(p->y - it->second[i +1].y/scaleFactor);
+                    float mdx = (it->second[i +1].x - it->second[i].x)/scaleFactor/2;
+                    float mdy = (it->second[i +1].y - it->second[i].y)/scaleFactor/2;
+                    if (vx < mouseForce && vy < mouseForce) {
+                        float weight = (1.0F - vx / mouseForce) * (1.0F - vy / mouseForce);
+                        p->u += weight * (mdx - p->u);
+                        p->v += weight * (mdy - p->v);
+                    }
+
+                }
+
+            }
+        }
 		// COLLISIONS-2
 		// Plus, an opportunity to add randomness when accounting for wall collisions. 
 		float xf = p->x + p->u;
@@ -590,6 +612,37 @@ vector<ofxMPMParticle*>& ofxMPMFluid::getParticles(){
 	return particles;
 }
 
+void ofxMPMFluid::addTouch(ofVec2f pos){
+    addTouch(0, pos);
+}
+void ofxMPMFluid::addTouch(int userID, ofVec2f pos){
+    
+        userPos[userID].push_back( pos) ;
+}
+void ofxMPMFluid::updateTouch(int userID, ofVec2f pos){
+
+    if(userPos.find(userID) != userPos.end()){
+    
+        userPos[userID].push_back(pos);
+        if(userPos[userID].size() > 2){
+            userPos[userID].erase(userPos[userID].begin());
+        }
+    }
+
+}
+void ofxMPMFluid::removeTouch(int userID){
+    if(userPos.find(userID) != userPos.end()){
+
+        map<int, vector<ofVec2f> >::iterator it;
+        for(it = userPos.begin(); it != userPos.end(); it++){
+            
+            if (it->first == userID) {
+                userPos.erase(it);
+                return;
+            }
+        }
+    }
+}
 int ofxMPMFluid::getGridSizeX(){
 	return gridSizeX;
 }

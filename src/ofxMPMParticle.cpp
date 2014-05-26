@@ -44,6 +44,7 @@
  */
 
 #include "ofxMPMParticle.h"
+#include <string.h>
 
 ofxMPMParticle::ofxMPMParticle ( float inx, float iny, float inu, float inv) {
 	x   = inx;

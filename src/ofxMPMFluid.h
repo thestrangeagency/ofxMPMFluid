@@ -53,9 +53,20 @@ class ofxMPMFluid {
   public:
 	ofxMPMFluid();
 
-	void setup(int maxParticles);
-	void update();
+	void setup(int maxParticles, int w=160, int h=120);
+	void update(float mouseX = ofGetMouseX(), float mouseY = ofGetMouseY());
 	void draw();
+    void addTouch(int userID, ofVec2f pos);
+    void addTouch(ofVec2f pos);
+    void updateTouch(int userID, ofVec2f pos);
+    void removeTouch(int userID);
+    
+    int gridSizeX, gridSizeY;
+    ofVec2f translate;
+    
+    
+    void addObstacle(ofxMPMObstacle *ob);
+    void removeObstacle(ofxMPMObstacle *ob);
 	
 	int getGridSizeX();
 	int getGridSizeY();
@@ -71,13 +82,17 @@ class ofxMPMFluid {
 	bool  bGradient;	
 	float gravity;
 	bool  bDoObstacles;
-	float smoothing;	
+	float smoothing;
+    
+    bool bDoMouse;
+    float mouseForce;
 	
 	vector<ofxMPMParticle*>& getParticles();
 	
   protected:
 	float elapsed;
 
+    map<int , vector<ofVec2f> > userPos;
 	vector<ofxMPMParticle*> particles;
 	int maxNumParticles;
 	vector< vector<ofxMPMNode*> > grid;
@@ -85,5 +100,6 @@ class ofxMPMFluid {
 	int numActiveNodes;
 	
 	vector<ofxMPMObstacle*> obstacles;
-	
+	float previousMouseX;
+	float previousMouseY;
 };

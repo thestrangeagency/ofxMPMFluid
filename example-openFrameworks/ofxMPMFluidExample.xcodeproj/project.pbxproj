@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B09D0AF14A118D300B8049A /* CreEPS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B09D0A914A118D300B8049A /* CreEPS.cpp */; };
-		3B09D0B014A118D300B8049A /* ofxVectorGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B09D0AD14A118D300B8049A /* ofxVectorGraphics.cpp */; };
 		3BFC411014A04C9E00D4D04B /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC410914A04C9E00D4D04B /* tinyxml.cpp */; };
 		3BFC411114A04C9E00D4D04B /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC410B14A04C9E00D4D04B /* tinyxmlerror.cpp */; };
 		3BFC411214A04C9E00D4D04B /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC410C14A04C9E00D4D04B /* tinyxmlparser.cpp */; };
@@ -94,13 +92,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B09D0A714A118D300B8049A /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
-		3B09D0A914A118D300B8049A /* CreEPS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CreEPS.cpp; sourceTree = "<group>"; };
-		3B09D0AA14A118D300B8049A /* CreEPS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CreEPS.hpp; sourceTree = "<group>"; };
-		3B09D0AB14A118D300B8049A /* CreEPS_Types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CreEPS_Types.hpp; sourceTree = "<group>"; };
-		3B09D0AD14A118D300B8049A /* ofxVectorGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVectorGraphics.cpp; sourceTree = "<group>"; };
-		3B09D0AE14A118D300B8049A /* ofxVectorGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorGraphics.h; sourceTree = "<group>"; };
-		3BFC410714A04C9E00D4D04B /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = install.xml; path = ../../../addons/ofxXmlSettings/install.xml; sourceTree = SOURCE_ROOT; };
 		3BFC410914A04C9E00D4D04B /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		3BFC410A14A04C9E00D4D04B /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml.h; path = ../../../addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
 		3BFC410B14A04C9E00D4D04B /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
@@ -165,9 +156,6 @@
 		3BFC417514A04DE000D4D04B /* simpleFileLister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simpleFileLister.h; path = ../../../addons/ofxControlPanel/src/simpleFileLister.h; sourceTree = SOURCE_ROOT; };
 		3BFC417614A04DE000D4D04B /* simpleLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = simpleLogger.cpp; path = ../../../addons/ofxControlPanel/src/simpleLogger.cpp; sourceTree = SOURCE_ROOT; };
 		3BFC417714A04DE000D4D04B /* simpleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simpleLogger.h; path = ../../../addons/ofxControlPanel/src/simpleLogger.h; sourceTree = SOURCE_ROOT; };
-		3BFC41DF14A0500500D4D04B /* Instructions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Instructions.txt; path = ../../../addons/ofxDirList/doc/Instructions.txt; sourceTree = SOURCE_ROOT; };
-		3BFC41E014A0500500D4D04B /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = install.xml; path = ../../../addons/ofxDirList/install.xml; sourceTree = SOURCE_ROOT; };
-		3BFC41E214A0500500D4D04B /* ofxDirList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxDirList.h; path = ../../../addons/ofxDirList/src/ofxDirList.h; sourceTree = SOURCE_ROOT; };
 		3BFC421414A052AC00D4D04B /* ofxAutoControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxAutoControlPanel.h; path = src/ofxAutoControlPanel.h; sourceTree = SOURCE_ROOT; };
 		A621C30214D710E6008AA7F0 /* ofxMPMFluid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMPMFluid.h; sourceTree = "<group>"; };
 		A621C30314D710E6008AA7F0 /* ofxMPMFluid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMPMFluid.cpp; sourceTree = "<group>"; };
@@ -225,40 +213,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B09D0A614A118D300B8049A /* ofxVectorGraphics */ = {
-			isa = PBXGroup;
-			children = (
-				3B09D0A714A118D300B8049A /* install.xml */,
-				3B09D0A814A118D300B8049A /* libs */,
-				3B09D0AC14A118D300B8049A /* src */,
-			);
-			name = ofxVectorGraphics;
-			path = ../../../addons/ofxVectorGraphics;
-			sourceTree = SOURCE_ROOT;
-		};
-		3B09D0A814A118D300B8049A /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				3B09D0A914A118D300B8049A /* CreEPS.cpp */,
-				3B09D0AA14A118D300B8049A /* CreEPS.hpp */,
-				3B09D0AB14A118D300B8049A /* CreEPS_Types.hpp */,
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
-		3B09D0AC14A118D300B8049A /* src */ = {
-			isa = PBXGroup;
-			children = (
-				3B09D0AD14A118D300B8049A /* ofxVectorGraphics.cpp */,
-				3B09D0AE14A118D300B8049A /* ofxVectorGraphics.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
 		3BFC410614A04C9E00D4D04B /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
-				3BFC410714A04C9E00D4D04B /* install.xml */,
 				3BFC410814A04C9E00D4D04B /* libs */,
 				3BFC410D14A04C9E00D4D04B /* src */,
 			);
@@ -363,35 +320,6 @@
 			path = ../../../addons/ofxControlPanel/src;
 			sourceTree = SOURCE_ROOT;
 		};
-		3BFC41DD14A0500500D4D04B /* ofxDirList */ = {
-			isa = PBXGroup;
-			children = (
-				3BFC41DE14A0500500D4D04B /* doc */,
-				3BFC41E014A0500500D4D04B /* install.xml */,
-				3BFC41E114A0500500D4D04B /* src */,
-			);
-			name = ofxDirList;
-			path = ../../../addons/ofxDirList;
-			sourceTree = SOURCE_ROOT;
-		};
-		3BFC41DE14A0500500D4D04B /* doc */ = {
-			isa = PBXGroup;
-			children = (
-				3BFC41DF14A0500500D4D04B /* Instructions.txt */,
-			);
-			name = doc;
-			path = ../../../addons/ofxDirList/doc;
-			sourceTree = SOURCE_ROOT;
-		};
-		3BFC41E114A0500500D4D04B /* src */ = {
-			isa = PBXGroup;
-			children = (
-				3BFC41E214A0500500D4D04B /* ofxDirList.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxDirList/src;
-			sourceTree = SOURCE_ROOT;
-		};
 		A621C2FF14D710DD008AA7F0 /* ofxMPMFluid */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,8 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				A621C2FF14D710DD008AA7F0 /* ofxMPMFluid */,
-				3B09D0A614A118D300B8049A /* ofxVectorGraphics */,
-				3BFC41DD14A0500500D4D04B /* ofxDirList */,
 				3BFC410614A04C9E00D4D04B /* ofxXmlSettings */,
 				3BFC413C14A04DE000D4D04B /* ofxControlPanel */,
 			);
@@ -622,8 +548,6 @@
 				3BFC419014A04DE000D4D04B /* simpleColor.cpp in Sources */,
 				3BFC419114A04DE000D4D04B /* simpleFileLister.cpp in Sources */,
 				3BFC419214A04DE000D4D04B /* simpleLogger.cpp in Sources */,
-				3B09D0AF14A118D300B8049A /* CreEPS.cpp in Sources */,
-				3B09D0B014A118D300B8049A /* ofxVectorGraphics.cpp in Sources */,
 				A621C30414D710E6008AA7F0 /* ofxMPMFluid.cpp in Sources */,
 				A621C30B14D71167008AA7F0 /* ofxMPMNode.cpp in Sources */,
 				A621C30C14D71167008AA7F0 /* ofxMPMObstacle.cpp in Sources */,

@@ -46,8 +46,8 @@
 #include "ofxMPMFluid.h"
 
 //TODO make varying
-#define gridSizeX 160
-#define gridSizeY 120 
+//#define gridSizeX 160
+//#define gridSizeY 120
 
 ofxMPMFluid::ofxMPMFluid() 
 :	densitySetting(5.0),
@@ -59,6 +59,9 @@ ofxMPMFluid::ofxMPMFluid()
 	gravity(.002),	  
 	bGradient(false),	 
 	bDoObstacles(true),
+    bDoMouse(false),
+    mouseForce(10),
+
 	elapsed(0.0),
 	scaleFactor(1.0),
 	smoothing(1.0)
@@ -66,8 +69,10 @@ ofxMPMFluid::ofxMPMFluid()
 	//
 }
 
-void ofxMPMFluid::setup(int maxParticles){
+void ofxMPMFluid::setup(int maxParticles, int w, int h){
 	maxNumParticles = maxParticles;
+    gridSizeX = w;
+    gridSizeY = h;
 	
 	// This creates a 2-dimensional array (i.e. grid) of Node objects.
 	for (int i=0; i<gridSizeX; i++){
@@ -78,22 +83,19 @@ void ofxMPMFluid::setup(int maxParticles){
 	}
 	
 	for (int i=0; i<(gridSizeX * gridSizeY); i++){
-		activeNodes.push_back( new ofxMPMNode() );
+		activeNodes.push_back(new ofxMPMNode() );
 	}
 	
 	for (int i=0; i < maxParticles; i++) {
 		int x0 = 5;
 		int x1 = gridSizeX-5;
 		float rx = ofRandom(x0,x1); 
-		float ry = ofRandom(5,gridSizeY/5);
+		float ry = ofRandom(5,gridSizeY-5);
 		particles.push_back( new ofxMPMParticle(rx,ry, 0.0, 0.0) );
 	}
-	
-	//TODO: JG add and remove obistacles through API
-	obstacles.push_back( new ofxMPMObstacle(gridSizeX * 0.75, gridSizeY * 0.75, gridSizeX * 0.075) );
 }
 
-void ofxMPMFluid::update(){
+void ofxMPMFluid::update(float mouseX, float mouseY){
 	// Important: can't exceed maxNParticles!
 	numParticles = MIN(numParticles, maxNumParticles);
 	
@@ -104,9 +106,9 @@ void ofxMPMFluid::update(){
 			grid[i][j]->clear();
 		}
 	}
-	
-	numActiveNodes = 0; 
-		
+
+	numActiveNodes = 0;
+
 	long t0 = ofGetElapsedTimeMillis();
 	//-------------------------
 	// Particles pass 1
@@ -351,20 +353,22 @@ void ofxMPMFluid::update(){
 		// Note: an accurate obstacle implementation would also need to implement
 		// some velocity fiddling as in the section labeled "COLLISIONS-2" below.
 		// Otherwise, this obstacle is "soft"; particles can enter it slightly. 
-		if (bDoObstacles && obstacles.size() > 0){
-			
-			// circular obstacle
-			float oR  = obstacles[0]->radius;
-			float oR2 = obstacles[0]->radius2;
-			float odx = obstacles[0]->cx - p->x;
-			float ody = obstacles[0]->cy - p->y;
-			float oD2 = odx*odx + ody*ody;
-			if (oD2 < oR2){
-				float oD = sqrtf(oD2);
-				float dR = oR-oD;
-				fx -= dR * (odx/oD); 
-				fy -= dR * (ody/oD); 
-				bounced = true;
+		if (bDoObstacles) {
+            for (int i=0; i<obstacles.size(); i++)
+            {
+                // circular obstacle
+                float oR  = obstacles[i]->radius;
+                float oR2 = obstacles[i]->radius2;
+                float odx = obstacles[i]->cx - p->x;
+                float ody = obstacles[i]->cy - p->y;
+                float oD2 = odx*odx + ody*ody;
+                if (oD2 < oR2){
+                    float oD = sqrtf(oD2);
+                    float dR = oR-oD;
+                    fx -= dR * (odx/oD);
+                    fy -= dR * (ody/oD);
+                    bounced = true;
+                }
 			}
 		}
 		
@@ -449,19 +453,40 @@ void ofxMPMFluid::update(){
 		}
 		
 		p->v += gravity;
-		//if (isMouseDragging) {
-		if (ofGetMousePressed(0)) {
-			float vx = abs(p->x - ofGetMouseX()/scaleFactor);
-			float vy = abs(p->y - ofGetMouseY()/scaleFactor);
-			float mdx = (ofGetMouseX() - ofGetPreviousMouseX())/scaleFactor;
-			float mdy = (ofGetMouseY() - ofGetPreviousMouseY())/scaleFactor;
-			if (vx < 10.0F && vy < 10.0F) {
-				float weight = (1.0F - vx / 10.0F) * (1.0F - vy / 10.0F);
+		if (bDoMouse) {
+            
+			float vx = abs(p->x - mouseX/scaleFactor);
+			float vy = abs(p->y - mouseY/scaleFactor);
+			float mdx = (mouseX - previousMouseX)/scaleFactor/2;
+			float mdy = (mouseY - previousMouseY)/scaleFactor/2;
+			if (vx < mouseForce && vy < mouseForce) {
+				float weight = (1.0F - vx / mouseForce) * (1.0F - vy / mouseForce);
 				p->u += weight * (mdx - p->u);
 				p->v += weight * (mdy - p->v);
 			}
 		}
 		
+        if(userPos.size() > 0){
+            map<int, vector<ofVec2f > >::iterator it;
+            
+            for(it = userPos.begin(); it != userPos.end(); it++){
+                
+                for( int i =0; i<it->second.size()-1; i++){
+                    
+                    float vx = abs(p->x - it->second[i +1].x/scaleFactor);
+                    float vy = abs(p->y - it->second[i +1].y/scaleFactor);
+                    float mdx = (it->second[i +1].x - it->second[i].x)/scaleFactor/2;
+                    float mdy = (it->second[i +1].y - it->second[i].y)/scaleFactor/2;
+                    if (vx < mouseForce && vy < mouseForce) {
+                        float weight = (1.0F - vx / mouseForce) * (1.0F - vy / mouseForce);
+                        p->u += weight * (mdx - p->u);
+                        p->v += weight * (mdy - p->v);
+                    }
+
+                }
+
+            }
+        }
 		// COLLISIONS-2
 		// Plus, an opportunity to add randomness when accounting for wall collisions. 
 		float xf = p->x + p->u;
@@ -544,8 +569,10 @@ void ofxMPMFluid::update(){
 	long dt =  t4 - t0;
 	elapsed = 0.95*elapsed + 0.05*(dt);
 	// Timing: in case you're curious about CPU consumption, uncomment this:
-	// printf("Elapsed = %d	%d	%d	%d	%f\n", dt0, dt1, dt2, dt3, elapsed); 
+	// printf("Elapsed = %d	%d	%d	%d	%f\n", dt0, dt1, dt2, dt3, elapsed);
 	
+	previousMouseX = mouseX;
+	previousMouseY = mouseY;
 }
 
 void ofxMPMFluid::draw(){
@@ -585,11 +612,57 @@ vector<ofxMPMParticle*>& ofxMPMFluid::getParticles(){
 	return particles;
 }
 
+void ofxMPMFluid::addTouch(ofVec2f pos){
+    addTouch(0, pos);
+}
+void ofxMPMFluid::addTouch(int userID, ofVec2f pos){
+    
+        userPos[userID].push_back( pos) ;
+}
+void ofxMPMFluid::updateTouch(int userID, ofVec2f pos){
+
+    if(userPos.find(userID) != userPos.end()){
+    
+        userPos[userID].push_back(pos);
+        if(userPos[userID].size() > 2){
+            userPos[userID].erase(userPos[userID].begin());
+        }
+    }
+
+}
+void ofxMPMFluid::removeTouch(int userID){
+    if(userPos.find(userID) != userPos.end()){
+
+        map<int, vector<ofVec2f> >::iterator it;
+        for(it = userPos.begin(); it != userPos.end(); it++){
+            
+            if (it->first == userID) {
+                userPos.erase(it);
+                return;
+            }
+        }
+    }
+}
 int ofxMPMFluid::getGridSizeX(){
 	return gridSizeX;
 }
 
 int ofxMPMFluid::getGridSizeY(){
 	return gridSizeY;
+}
+
+void ofxMPMFluid::addObstacle(ofxMPMObstacle *ob)
+{
+    obstacles.push_back(ob);
+}
+
+void ofxMPMFluid::removeObstacle(ofxMPMObstacle *ob)
+{
+    for (int i=0; i<obstacles.size(); i++) {
+        if (ob == obstacles[i]) {
+            obstacles.erase(obstacles.begin()+i);
+            return;
+        }
+    }
 }
 

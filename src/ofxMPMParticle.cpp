@@ -44,6 +44,7 @@
  */
 
 #include "ofxMPMParticle.h"
+#include <string.h>
 
 ofxMPMParticle::ofxMPMParticle ( float inx, float iny, float inu, float inv) {
 	x   = inx;
@@ -53,10 +54,16 @@ ofxMPMParticle::ofxMPMParticle ( float inx, float iny, float inu, float inv) {
 	pu = 0;
 	pv = 0; 
 	cx  = 0; 
-	cy  = 0; 
+	cy  = 0;
+    
+    gu = 0;
+    gv = 0;
+    T00 = 0;
+    T01 = 0;
+    T11 = 0;
 
-	//px = new float[3];
-	//py = new float[3];
-	//gx = new float[3];
-	//gy = new float[3];
+    memset(px, 0, sizeof(px));
+    memset(py, 0, sizeof(py));
+    memset(gx, 0, sizeof(gx));
+    memset(py, 0, sizeof(gy));
 }

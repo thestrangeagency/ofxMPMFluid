@@ -44,13 +44,10 @@
  */
 
 #pragma once
-
-#include "ofMain.h"
-
 #include "ofxMPMFluid.h"
 #include "ofxAutoControlPanel.h"  /* for the control panel */
 
-class testApp : public ofBaseApp {
+class ofApp : public ofBaseApp {
 	
 	public:
 		

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2C6E5F8A-A02B-490B-B0A2-943DDB9F0B08</string>
+	<key>IDESourceControlProjectName</key>
+	<string>emptyExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C45A23CB-D80B-41B3-BFA7-C35BD5A436AD</key>
+		<string>https://github.com/kylemcdonald/ofxControlPanel.git</string>
+		<key>D8DF0943-4CFB-4FE3-A97A-D96BBD83AE11</key>
+		<string>https://github.com/golanlevin/MPM-Fluid.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>example-openFrameworks/emptyExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C45A23CB-D80B-41B3-BFA7-C35BD5A436AD</key>
+		<string>../../../../ofxControlPanel</string>
+		<key>D8DF0943-4CFB-4FE3-A97A-D96BBD83AE11</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/golanlevin/MPM-Fluid.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D8DF0943-4CFB-4FE3-A97A-D96BBD83AE11</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D8DF0943-4CFB-4FE3-A97A-D96BBD83AE11</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MPM-Fluid</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C45A23CB-D80B-41B3-BFA7-C35BD5A436AD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxControlPanel</string>
+		</dict>
+	</array>
+</dict>
+</plist>

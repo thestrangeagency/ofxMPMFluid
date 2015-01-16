@@ -465,6 +465,9 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
 				p->v += weight * (mdy - p->v);
 			}
 		}
+        
+        // stir
+        p->v += (p->x-128.f)*.00001;
 		
         if(userPos.size() > 0){
             map<int, vector<ofVec2f > >::iterator it;
@@ -595,15 +598,23 @@ void ofxMPMFluid::draw(){
 	// Draw the active particles as a short line, 
 	// using their velocity for their length. 
 	vector<ofVec2f> verts;
+    vector<ofVec3f> colors;
 
 	for (int ip=0; ip<numParticles; ip++) {
 		ofxMPMParticle* p = particles[ip];
 		verts.push_back(ofVec2f(p->x, p->y));
 		verts.push_back(ofVec2f(p->x - p->u, p->y - p->v));
+        
+        ofVec3f color = ofVec3f(10 * fabsf(p->pu), 10 * fabsf(p->pv), 1.f);
+        colors.push_back( color );
+        colors.push_back( color );
 	}
 	glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(2, GL_FLOAT, 0, &(verts[0].x));
+    glColorPointer(3, GL_FLOAT, 0, &(colors[0].x));
 	glDrawArrays(GL_LINES, 0, verts.size());
+    glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	ofPopMatrix();
 }

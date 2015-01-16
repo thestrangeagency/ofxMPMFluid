@@ -66,4 +66,6 @@ ofxMPMParticle::ofxMPMParticle ( float inx, float iny, float inu, float inv) {
     memset(py, 0, sizeof(py));
     memset(gx, 0, sizeof(gx));
     memset(py, 0, sizeof(gy));
+    
+    color = ofVec3f(1, 1, 1);
 }

@@ -70,7 +70,7 @@ ofxMPMFluid::ofxMPMFluid()
 }
 
 void ofxMPMFluid::setup(int maxParticles, int w, int h){
-	maxNumParticles = maxParticles;
+	numParticles = maxNumParticles = maxParticles;
     gridSizeX = w;
     gridSizeY = h;
 	
@@ -466,8 +466,13 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
 			}
 		}
         
+        // measure mouse
+        float vx = (p->x - mouseX/scaleFactor);
+        float vy = (p->y - mouseY/scaleFactor);
+        p->md = sqrt(vx*vx + vy*vy);
+        
         // stir
-        p->v += (p->x-128.f)*.00001;
+        p->v += (p->x-64.f)*.0001;
 		
         if(userPos.size() > 0){
             map<int, vector<ofVec2f > >::iterator it;
@@ -605,7 +610,10 @@ void ofxMPMFluid::draw(){
 		verts.push_back(ofVec2f(p->x, p->y));
 		verts.push_back(ofVec2f(p->x - p->u, p->y - p->v));
         
-        ofVec3f color = ofVec3f(10 * fabsf(p->pu), 10 * fabsf(p->pv), 1.f);
+        //ofVec3f color = ofVec3f(10 * fabsf(p->pu), 10 * fabsf(p->pv), p->md/100.f);
+        ofVec3f color = p->color;
+        // color.z = p->md/100.f;
+        
         colors.push_back( color );
         colors.push_back( color );
 	}

@@ -44,6 +44,7 @@
  */
 
 #pragma once
+#include "ofMain.h"
 
 //============================================================================
 class ofxMPMParticle {
@@ -57,6 +58,10 @@ class ofxMPMParticle {
 	float pu; 
 	float pv;
 	float d;
+    
+    float md;       // mouse distance
+    void *aux;      // handy void pointer
+    ofVec3f color;  // rgb float
 
 	int   cx;
 	int   cy;

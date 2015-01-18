@@ -64,7 +64,9 @@ ofxMPMFluid::ofxMPMFluid()
 
 	elapsed(0.0),
 	scaleFactor(1.0),
-	smoothing(1.0)
+	smoothing(1.0),
+
+    stir(.001)
 {
 	//
 }
@@ -469,10 +471,10 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
         // measure mouse
         float vx = (p->x - mouseX/scaleFactor);
         float vy = (p->y - mouseY/scaleFactor);
-        p->md = sqrt(vx*vx + vy*vy);
+        p->md = sqrt(vx*vx + vy*vy)*scaleFactor;
         
         // stir
-        p->v += (p->x-64.f)*.0001;
+        p->v += (p->x-64.f)*stir;
 		
         if(userPos.size() > 0){
             map<int, vector<ofVec2f > >::iterator it;

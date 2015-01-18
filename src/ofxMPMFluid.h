@@ -53,7 +53,7 @@ class ofxMPMFluid {
   public:
 	ofxMPMFluid();
 
-	void setup(int maxParticles, int w=160, int h=120);
+	void setup(int maxParticles, int w=80, int h=80);
 	void update(float mouseX = ofGetMouseX(), float mouseY = ofGetMouseY());
 	void draw();
     void addTouch(int userID, ofVec2f pos);
@@ -88,6 +88,8 @@ class ofxMPMFluid {
     float mouseForce;
 	
 	vector<ofxMPMParticle*>& getParticles();
+    
+    float stir;
 	
   protected:
 	float elapsed;

@@ -468,10 +468,16 @@ void ofxMPMFluid::update(float mouseX, float mouseY){
 			}
 		}
         
-        // measure mouse
-        float vx = (p->x - mouseX/scaleFactor);
-        float vy = (p->y - mouseY/scaleFactor);
-        p->md = sqrt(vx*vx + vy*vy)*scaleFactor;
+        // measure distance
+        
+        float vx = (p->x - pda->x/scaleFactor);
+        float vy = (p->y - pda->y/scaleFactor);
+        p->da = sqrt(vx*vx + vy*vy)*scaleFactor;
+
+        vx = (p->x - pdb->x/scaleFactor);
+        vy = (p->y - pdb->y/scaleFactor);
+        p->db = sqrt(vx*vx + vy*vy)*scaleFactor;
+
         
         // stir
         p->v += (p->x-64.f)*stir;

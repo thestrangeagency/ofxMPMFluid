@@ -59,7 +59,8 @@ class ofxMPMParticle {
 	float pv;
 	float d;
     
-    float md;       // mouse distance
+    float da;       // handy distance vars
+    float db;
     void *aux;      // handy void pointer
     ofVec3f color;  // rgb float
 

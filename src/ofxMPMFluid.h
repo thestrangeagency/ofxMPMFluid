@@ -90,6 +90,10 @@ class ofxMPMFluid {
 	vector<ofxMPMParticle*>& getParticles();
     
     float stir;
+    
+    // measure distance to a couple points
+    ofVec2f *pda;
+    ofVec2f *pdb;
 	
   protected:
 	float elapsed;

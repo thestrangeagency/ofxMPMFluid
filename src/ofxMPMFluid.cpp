@@ -618,7 +618,7 @@ void ofxMPMFluid::draw(){
         
         ofVec2f start = ofVec2f(p->x, p->y);
         ofVec2f end = ofVec2f(p->x + p->u, p->y + p->v);
-        ofVec2f diff = ofVec2f(p->u, p->pv).perpendicular();
+        ofVec2f diff = ofVec2f(p->u, p->v).perpendicular();
         ofVec2f top = start + diff;
         ofVec2f bot = start - diff;
         

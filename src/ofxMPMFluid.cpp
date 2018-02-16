@@ -627,6 +627,7 @@ void ofxMPMFluid::draw(){
         verts.push_back(end);
         
         //ofVec3f color = ofVec3f(10 * fabsf(p->pu), 10 * fabsf(p->pv), p->md/100.f);
+        p->color.z = p->d/1.f;
         ofVec3f color = p->color;
         // color.z = p->md/100.f;
         

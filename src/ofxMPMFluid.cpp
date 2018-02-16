@@ -615,8 +615,16 @@ void ofxMPMFluid::draw(){
 
 	for (int ip=0; ip<numParticles; ip++) {
 		ofxMPMParticle* p = particles[ip];
-		verts.push_back(ofVec2f(p->x, p->y));
-		verts.push_back(ofVec2f(p->x - p->u, p->y - p->v));
+        
+        ofVec2f start = ofVec2f(p->x, p->y);
+        ofVec2f end = ofVec2f(p->x + p->u, p->y + p->v);
+        ofVec2f diff = ofVec2f(p->u, p->pv).perpendicular();
+        ofVec2f top = start + diff;
+        ofVec2f bot = start - diff;
+        
+        verts.push_back(top);
+		verts.push_back(bot);
+        verts.push_back(end);
         
         //ofVec3f color = ofVec3f(10 * fabsf(p->pu), 10 * fabsf(p->pv), p->md/100.f);
         ofVec3f color = p->color;
@@ -624,12 +632,13 @@ void ofxMPMFluid::draw(){
         
         colors.push_back( color );
         colors.push_back( color );
+        colors.push_back( color );
 	}
 	glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(2, GL_FLOAT, 0, &(verts[0].x));
     glColorPointer(3, GL_FLOAT, 0, &(colors[0].x));
-	glDrawArrays(GL_LINES, 0, verts.size());
+	glDrawArrays(GL_TRIANGLES, 0, verts.size());
     glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	ofPopMatrix();
